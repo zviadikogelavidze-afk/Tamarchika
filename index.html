@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>თამარჩიკასთვის 💖</title>
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffc0cb, #ff99cc);
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 28px;
+    color: white;
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-10px); }
+}
+
+.bear {
+    width: 220px;
+    animation: pop 1s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.yes {
+    background-color: #ff4da6;
+    color: white;
+}
+
+.no {
+    background-color: white;
+    color: #ff4da6;
+    position: absolute;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+.popup img {
+    width: 200px;
+}
+
+/* მოძრავი გულები */
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 მუსიკა -->
+<audio autoplay loop>
+    <!-- თუ გაქვს კონკრეტული mp3 ლინკი, ჩასვი აქ -->
+    <source src="https://files.catbox.moe/4f6q9k.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <img class="bear" src="https://media.giphy.com/media/26BRzozg4TCBXv6QU/giphy.gif">
+    <h1>
+        თამარჩიკა 💕<br>
+        იქნები ჩემი ვალენტინი?<br>
+        სიყვარულით — სანდრო 💌
+    </h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">კი 💘</button>
+        <button class="no" id="noBtn">არა 😢</button>
+    </div>
+</div>
+
+<div class="popup" id="lovePopup">
+    <h2>ვიცოდი რომ გამიღიმებდი 🥰<br>სიყვარულით — შენი სანდრო 💞</h2>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+function showLove() {
+    document.getElementById("lovePopup").style.display = "block";
+}
+
+/* გულების გენერაცია */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
